@@ -207,7 +207,7 @@
                                     <i class="fa fa-caret-down ms-3 me-2 " aria-hidden="true"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="app-profile.html" class="dropdown-item ai-icon">
+                                    <a href="{{ route('perfil') }}" class="dropdown-item ai-icon">
                                         <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary"
                                             width="18" height="18" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -217,7 +217,7 @@
                                         </svg>
                                         <span class="ms-2">Perfil </span>
                                     </a>
-                                    <a href="page-login.html" class="dropdown-item ai-icon">
+                                    <a href="{{ route('login') }}" class="dropdown-item ai-icon">
                                         <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
                                             width="18" height="18" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -265,10 +265,11 @@
                             <span class="nav-text">Bolsa</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="#">Cadastrar</a></li>
-                            <li><a href="#">Lista dos Bolseiros</a></li>
-                            <li><a href="#">Lista de Solicitações</a></li>
-                            <li><a href="#">Solicitar Bolsa</a></li>
+                            <li><a href="javascript:void(0);" data-bs-toggle="modal"
+                                    data-bs-target="#cadastrarBolsaModal">Cadastrar Bolsa</a></li>
+                            <li><a href="{{ route('showBolseiros') }}">Lista dos Bolseiros</a></li>
+                            <li><a href="{{ route('showSolicitacoes') }}">Lista de Solicitações</a></li>
+                            <li><a href="{{ route('bolsasdisponiveis') }}">Bolsas Disponíveis</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -276,9 +277,10 @@
                             <span class="nav-text">Padrinhos</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="#">Cadastrar</a></li>
-                            <li><a href="#">Lista dos Padrinhos</a></li>
-                            <li><a href="#">Doação</a></li>
+                            <li><a href="avascript:void(0);" data-bs-toggle="modal"
+                                    data-bs-target="#addPadrinhoModal">Cadastrar</a></li>
+                            <li><a href="{{ route('crudPadrinho') }}">Lista dos Padrinhos</a></li>
+                            <li><a href="{{ route('pageDoacao') }}">Doação</a></li>
                         </ul>
                     </li>
                     <li><a href="#" class="ai-icon" aria-expanded="false">
@@ -286,7 +288,7 @@
                             <span class="nav-text">Configurações</span>
                         </a>
                     </li>
-                    <li><a href="#" class="ai-icon" aria-expanded="false">
+                    <li><a href="{{ route('perfil') }}" class="ai-icon" aria-expanded="false">
                             <i>
                                 <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary"
                                     width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -299,7 +301,7 @@
                             <span class="nav-text">Perfil</span>
                         </a>
                     </li>
-                    <li><a href="#" class="ai-icon" aria-expanded="false">
+                    <li><a href="{{ route('login') }}" class="ai-icon" aria-expanded="false">
                             <i>
                                 <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
                                     width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -350,7 +352,7 @@
               Main wrapper end
           ***********************************-->
 
-    {{-- Modales --}}
+    {{-- Modales add Funcionário --}}
     <!-- Add Order -->
     <div class="modal fade" id="addFuncionarioModal">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -390,8 +392,129 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Registar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- End Modales --}}
+
+
+    {{-- Modales cadastrar bolsa --}}
+    <!-- Add Order -->
+    <div class="modal fade" id="cadastrarBolsaModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Registar Bolsa de Estudo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="text-black font-w500">Título</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black font-w500">Nome do Padrinho ou Patrocinador</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black font-w500">Nº. de Vagas</label>
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black font-w500">Tipo de Bolsa</label>
+                            <select name="" id="" class="form-control">
+                                <option value="" selected></option>
+                                <option value="">Parcial</option>
+                                <option value="">Totalmente Finaciada</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black font-w500">Nível Acadêmico</label>
+                            <select name="" id="" class="form-control">
+                                <option value="" selected></option>
+                                <option value="">Ensino Secundário</option>
+                                <option value="">Ensino Médio</option>
+                                <option value="">Ensino Superior</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black font-w500">Período da Bolsa</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="form-label">Data de Início</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Data de Término</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black font-w500">Descrição</label>
+                            <input type="textarea" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Registar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- End Modales --}}
+
+    {{-- Modales Padrinho --}}
+    <!-- Add Order -->
+    <div class="modal fade" id="addPadrinhoModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adicionar Padrinho/Finaceiro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="text-black font-w500">Tipo</label>
+                            <select name="" id="" class="form-control">
+                                <option value="" selected>--Defina uma Função--</option>
+                                <option value="">Pessoa Individual</option>
+                                <option value="">Empresa</option>
+                                <option value="">Anónimio</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black font-w500">Name</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black font-w500">Nº. Telefone</label>
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black font-w500">Email</label>
+                            <input type="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black font-w500">Password</label>
+                            <input type="password" class="form-control">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Registar</button>
                 </div>
             </div>
         </div>

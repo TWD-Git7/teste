@@ -1,8 +1,8 @@
 @extends('painel.master')
 @section('content')
-    <!--**********************************
-                                                                    Content body start
-                                                                ***********************************-->
+    {{-- <!--**********************************
+        Content body start
+    ***********************************--> --}}
     <div class="content-body">
         <div class="container-fluid">
             <div class="form-head d-flex flex-wrap mb-sm-4 mb-3 align-items-center">
@@ -223,7 +223,7 @@
 
             </div>
         </div>
-        <!--**********************************
-                                                  Content body end
-                                            ***********************************-->
+        {{-- <!--**********************************
+                 Content body end
+             ***********************************--> --}}
     @endsection
